@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\comments",
+    "\\src\\components\\layout",
+    "\\src\\components\\quotes",
+    "\\src\\components\\UI",
+    "\\src\\hooks",
+    "\\src\\lib",
+    "\\src\\pages"
+  ],
+  "SelectedNode": "\\src\\components\\comments\\NewCommentForm.js",
+  "PreviewInSolutionExplorer": false
+}

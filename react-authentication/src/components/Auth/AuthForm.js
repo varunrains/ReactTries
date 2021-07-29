@@ -57,7 +57,9 @@ const AuthForm = () => {
                 });
             }
         }).then(data => {
-            authCtx.login(data.idToken);
+            // data.expiresIn will be in seconds and it will be in string.
+            const expirationTime = new Date((new Date().getTime() + (+data.expiresIn * 1000)))
+            authCtx.login(data.idToken, expirationTime.toString());
             history.replace('/'); //Redirect without the back buttonform
         }).catch((err) => {
             alert(err.message);

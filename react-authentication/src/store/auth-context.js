@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
+let logoutTimer;
 const AuthContext = React.createContext({
     token: '',
     isLoggedIn: false,
@@ -8,23 +9,68 @@ const AuthContext = React.createContext({
 
 });
 
+const calculateRemainingTime = (expirationTime) => {
+    const currentTime = new Date().getTime();
+    const adjExpirationTime = new Date(expirationTime).getTime();
+
+    const remainingDuration = adjExpirationTime - currentTime;
+    return remainingDuration;
+}
+
+const retreivedStoredToken = () => {
+    const storedToken = localStorage.getItem('token');
+    const storedExpirationDate = localStorage.getItem('expirationTime');
+
+    const remainingTime = calculateRemainingTime(storedExpirationDate);
+    if (remainingTime <= 3600) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('expirationTime');
+        return null;
+    }
+
+    return {
+        token: storedToken,
+        duration: remainingTime
+    }
+}
+
 export const AuthContextProvider = (props) => {
-    //synchronous call so no "useEffect" is required
-    const initialToken = localStorage.getItem('token');
+
+    const tokenData = retreivedStoredToken();
+    let initialToken;
+    if (tokenData) {
+         initialToken = tokenData.token;
+    }
     const [token, setToken] = useState(initialToken);
     const userIsLoggedIn = !!token;
 
-    const loginHandler = (token) => {
-
+    const loginHandler = (token, expirationTime) => {
         setToken(token);
         //local storage is only capable to store primitive.
-        localStorage.setItem('token',token);
+        localStorage.setItem('token', token);
+        localStorage.setItem('expirationTime', expirationTime);
+        const remainingTime = calculateRemainingTime(expirationTime);
+
+     logoutTimer = setTimeout(logoutHandler, remainingTime);
     };
 
-    const logoutHandler = () => {
+    const logoutHandler = useCallback(() => {
+        //set token is a state changing method so no need to add that in the dependency array
+        //localStorage and clearTimeout are the browser inbuilt methods so need to add that too.
         setToken(null);
         localStorage.removeItem('token');
-    };
+        if (logoutTimer) {
+            clearTimeout(logoutTimer);
+        }
+    },[]);
+
+    useEffect(() => {
+        if (tokenData) {
+            console.log(tokenData.duratio);
+            logoutTimer = setTimeout(logoutHandler, tokenData.duration);
+        }
+
+    }, [tokendata, logoutHandler]);
 
     const contextValue = {
         token: token,

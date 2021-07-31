@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\public",
+    "\\src",
+    "\\src\\containers",
+    "\\src\\hooks-store",
+    "\\src\\store"
   ],
+  "SelectedNode": "\\src\\hooks-store\\store.js",
   "PreviewInSolutionExplorer": false
 }

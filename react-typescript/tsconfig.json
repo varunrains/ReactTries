@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es5", //Controls the target JS version that you are targetting
+    "lib": [
+      "dom", //Default DOM types are understood by type script like <HTMLInputElement>
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true, //Mix and match with JS and typescript files in project
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true, //With strict we cannot have any implicit values 
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react" //Controls the codes that should supported by JSX
+  },
+  "include": [
+    "src"
+  ]
+}

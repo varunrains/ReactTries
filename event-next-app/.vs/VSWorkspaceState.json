@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\helpers",
+    "\\pages",
+    "\\pages\\events",
+    "\\public",
+    "\\public\\images",
+    "\\styles"
+  ],
+  "SelectedNode": "\\pages\\events\\[...slug].js",
+  "PreviewInSolutionExplorer": false
+}

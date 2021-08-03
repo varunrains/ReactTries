@@ -6,6 +6,7 @@ import Button from "../../components/UI/button";
 import ErrorAlert from "../../components/UI/error-alert";
 import { getFilteredEvents } from "../../helpers/api-util";
 import useSWR from 'swr';
+import Head from 'next/head';
 
 const FilteredEventsPage = (props) => {
     const [events, setEvents] = useState([]);
@@ -28,12 +29,7 @@ const FilteredEventsPage = (props) => {
             setEvents(events);
         }
 
-    }, [data])
-
-
-    if (!events) {
-        return <p className='center'>Loading...</p>;
-    }
+    }, [data]);
 
     const filteredYear = filteredData[0];
     const filteredMonth = filteredData[1];
@@ -41,11 +37,25 @@ const FilteredEventsPage = (props) => {
     const numYear = +filteredYear;
     const numMonth = +filteredMonth;
 
+    const pageHeadData = <Head>
+        <title>Filtered Events</title>
+        <meta name='description' content={`All events for ${numMonth} / ${numYear}`} />
+    </Head>;
+
+
+    if (!events) {
+        return <Fragment>  {pageHeadData} <p className='center'>Loading...</p></Fragment>;
+    }
+
+   
+
 
     // if (props.hasError) {
     if (isNaN(numYear) || isNaN(numMonth) || numYear > 2030 || numYear < 2021 || numMonth < 1 || numMonth > 12 || error) {
         return
-        (<Fragment><ErrorAlert> <p className='center'>Invalid filter please adjust your values..</p></ErrorAlert>
+        (<Fragment>
+            {pageHeadData}
+            <ErrorAlert> <p className='center'>Invalid filter please adjust your values..</p></ErrorAlert>
             <div className='center'> <Button link='/events'>Show All events</Button></div>
         </Fragment>);
     }

@@ -1,4 +1,6 @@
 //import { getFeaturedEvents } from "../dummy-data";
+//special component to add the meta tag
+import Head from 'next/head';
 import EventList from "../components/events/event-list";
 import { getFeaturedEvents } from "../helpers/api-util";
 
@@ -6,6 +8,10 @@ const HomePage = (props) => {
     //const featuredEvents = getFeaturedEvents();
 
     return (<div>
+        <Head>
+            <title>NextJS Events</title>
+            <meta name='description' content='find a lot of great content'/>
+        </Head>
         <EventList items={props.events} />
     </div>);
 };

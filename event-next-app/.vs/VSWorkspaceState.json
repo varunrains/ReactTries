@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\components",
+    "\\components\\event-detail",
+    "\\components\\events",
     "\\helpers",
     "\\pages",
     "\\pages\\events",
@@ -8,6 +11,6 @@
     "\\public\\images",
     "\\styles"
   ],
-  "SelectedNode": "\\pages\\events\\[...slug].js",
+  "SelectedNode": "\\components\\events\\event-item.js",
   "PreviewInSolutionExplorer": false
 }

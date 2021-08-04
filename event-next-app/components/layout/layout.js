@@ -1,7 +1,13 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import MainHeader from "./main-header";
+import Notification from "../UI/notification";
+import NotificationContext from "../../store/notification-context";
 
 const Layout = (props) => {
+    const notificationCtx = useContext(NotificationContext);
+
+    const activeNotification = notificationCtx.notification;
+
 
     return (
         <Fragment>
@@ -9,6 +15,7 @@ const Layout = (props) => {
             <main>
                 {props.children}
             </main>
+            {activeNotification && <Notification title={activeNotification.title} message={activeNotification.message} status={activeNotification.status} />}
         </Fragment>
         
         );

@@ -1,4 +1,4 @@
-import Document, {Head, Head, Main, NextScript, Html} from 'next/document';
+import Document, {Head, Main, NextScript, Html} from 'next/document';
 
 class MyDocument extends Document {
 

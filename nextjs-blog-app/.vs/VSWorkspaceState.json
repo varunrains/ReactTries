@@ -2,15 +2,16 @@
   "ExpandedNodes": [
     "",
     "\\components",
-    "\\components\\posts",
-    "\\components\\posts\\post-detail",
-    "\\lib",
-    "\\posts",
+    "\\components\\contact",
+    "\\components\\ui",
+    "\\pages",
+    "\\pages\\api",
+    "\\pages\\posts",
     "\\public",
     "\\public\\images",
     "\\public\\images\\posts",
     "\\public\\images\\posts\\getting-started-with-nextjs"
   ],
-  "SelectedNode": "\\pages\\posts\\[slug].js",
+  "SelectedNode": "\\components\\posts\\post-detail\\post-content.js",
   "PreviewInSolutionExplorer": false
 }
